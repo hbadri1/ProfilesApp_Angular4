@@ -1,0 +1,40 @@
+<div class="container">
+  <nav class="navbar">
+    <a class="navbar-brand" routerLink="/">My Profile</a>
+
+    <!-- No logged in users -->
+    <ul *ngIf="!showAuthed" class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Sign in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/register" routerLinkActive="active">Sign up</a>
+      </li>
+    </ul>
+    <!-- Logged in users -->
+    <ul *ngIf="showAuthed" class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/editor" routerLinkActive="active">
+          <span class="glyphicon glyphicon-pencil"></span>&nbsp;New Article
+        </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink="/settings" routerLinkActive="active">
+            <span class="glyphicon glyphicon-cog"></span>&nbsp;Settings
+          </a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/profile',currentUser.username]" routerLinkActive="active">
+          <img [src]="currentUser.image" *ngIf="currentUser.image"/>
+          {{currentUser.username}}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
